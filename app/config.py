@@ -15,7 +15,7 @@ class Config:
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD') or 'renjing13471344'
     # 文件上传
     MAX_CONTENT_LENGTH = 8 * 1024 * 1024
-    UPLOADED_PHOTOS_DEST = os.path.join(base_dir,'upload')
+    UPLOADED_PHOTOS_DEST = os.path.join(base_dir,'static/upload')
 
 # 配置开发环境
 class DevelopConfig(Config):
