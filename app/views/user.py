@@ -1,5 +1,5 @@
 from flask import Blueprint,render_template,flash,url_for,redirect,current_app, request
-from app.forms import RegisterForm,LoginForm
+from app.forms import RegisterForm,LoginForm, Changepwd
 from app.email import send_mail
 from app.models import User
 from app.extensions import db
@@ -77,4 +77,21 @@ def logout():
 # 对指定的路由进行保护，使用装饰器
 @login_required
 def profile():
-    return '详细信息'
+    return render_template('user/details.html')
+
+'''修改密码'''
+@user.route('/changepwd/', methods=['POST','GET'])
+def changepwd():
+    form = Changepwd()
+    if form.validate_on_submit():
+        if not current_user.verify_password(form.oldpassword.data):
+            flash('原密码错误')
+            return redirect(url_for('user.changepwd'))
+        elif form.oldpassword.data == form.password.data:
+            flash('新密码与原密码相同，密码未修改')
+            return redirect(url_for('user.changepwd'))
+        current_user.password = form.password.data
+        db.session.add(current_user)
+        flash('密码修改成功！')
+        return redirect(url_for('user.changepwd'))
+    return render_template('user/changepwd.html', form=form)

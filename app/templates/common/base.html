@@ -34,8 +34,8 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">{{ current_user.username }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">详细信息</a></li>
-                            <li><a href="#">修改密码</a></li>
+                            <li><a href="{{ url_for('user.profile') }}">详细信息</a></li>
+                            <li><a href="{{ url_for('user.changepwd') }}">修改密码</a></li>
                             <li><a href="#">修改邮箱</a></li>
                             <li><a href="#">修改头像</a></li>
                         </ul>

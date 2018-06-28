@@ -16,3 +16,10 @@ class LoginForm(FlaskForm):
     password = PasswordField('密码',validators=[DataRequired('密码不能为空')])
     remember = BooleanField('记住我')
     submit = SubmitField('登陆')
+
+# 修改密码
+class Changepwd(FlaskForm):
+    oldpassword = PasswordField('旧密码', validators=[Length(6, 20, '用户名必须在6-20个字符之间')])
+    password = PasswordField('密码', validators=[Length(6, 20, '用户名必须在6-20个字符之间')])
+    confirm = PasswordField('确认密码', validators=[EqualTo('password', '两次密码不一致')])
+    submit = SubmitField('确定')
