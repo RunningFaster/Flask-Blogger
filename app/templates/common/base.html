@@ -28,8 +28,23 @@
                     <li><a href="#">版块三</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">登录</a></li>
-                    <li><a href="{{ url_for('user.register') }}">注册</a></li>
+                    {% if current_user.is_authenticated %}
+                        <li><a href="{{ url_for('user.logout') }}">退出</a></li>
+                        <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">{{ current_user.username }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">详细信息</a></li>
+                            <li><a href="#">修改密码</a></li>
+                            <li><a href="#">修改邮箱</a></li>
+                            <li><a href="#">修改头像</a></li>
+                        </ul>
+                    </li>
+                    {% else %}
+                        <li><a href="{{ url_for('user.login') }}">登录</a></li>
+                        <li><a href="{{ url_for('user.register') }}">注册</a></li>
+                    {% endif %}
+
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container -->

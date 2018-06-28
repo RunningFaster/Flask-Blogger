@@ -17,20 +17,23 @@ class Config:
     MAX_CONTENT_LENGTH = 8 * 1024 * 1024
     UPLOADED_PHOTOS_DEST = os.path.join(base_dir,'static/upload')
 
-# 配置开发环境
+#开发环境配置
 class DevelopConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(base_dir,'blog-dev.sqlite')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(base_dir, 'blog_dev.sqlite')
+
 
 # 测试环境配置
 class TestingConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(base_dir,'blog-test.sqlite')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(base_dir, 'blog_test.sqlite')
 
-# 生产环境
+
+# 生产环境配置
 class ProductConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(base_dir,'blog.sqlite')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(base_dir, 'blog.sqlite')
+
 
 # 配置字典
-config = {
+config_1 = {
     'develop':DevelopConfig,
     'testing':TestingConfig,
     'product':ProductConfig,
